@@ -79,7 +79,7 @@ class NifExportOperator(bpy.types.Operator, ExportHelper, NifOperatorCommon):
             ],
         name="Game",
         description="For which game to export.",
-        default='OBLIVION')
+        default='SKYRIM')
 
     #: How to export animation.
     animation = bpy.props.EnumProperty(
@@ -141,7 +141,7 @@ class NifExportOperator(bpy.types.Operator, ExportHelper, NifOperatorCommon):
     max_bones_per_partition = bpy.props.IntProperty(
         name = "Max Partition Bones",
         description="Maximum number of bones per skin partition.",
-        default=18, min=4, max=63)
+        default=24, min=4, max=63)
 
     #: Maximum number of bones per vertex in skin partitions.
     max_bones_per_vertex = bpy.props.IntProperty(

@@ -66,13 +66,13 @@ bl_info = {
     "name": "NetImmerse/Gamebryo nif format",
     "description": "Import and export files in the NetImmerse/Gamebryo nif format (.nif)",
     "author": "NifTools Team",
-    "blender": (2, 7, 7),
-    "version": (2, 6, 0),  # can't read from VERSION, blender wants it hardcoded
+    "blender": (2, 7, 9),
+    "version": (2, 6, 1),  # can't read from VERSION, blender wants it hardcoded
     "api": 39257,
     "location": "File > Import-Export",
     "warning": "partially functional, port from 2.49 series still in progress",
     "wiki_url": "https://blender-nif-plugin.readthedocs.io/",
-    "tracker_url": "https://github.com/niftools/blender_nif_plugin/issues",
+    "tracker_url": "",
     "support": "COMMUNITY",
     "category": "Import-Export"}
 

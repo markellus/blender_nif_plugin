@@ -168,8 +168,16 @@ class TextureLoader():
         searchPathList = [importpath]
         if bpy.context.user_preferences.filepaths.texture_directory:
             searchPathList.append(bpy.context.user_preferences.filepaths.texture_directory)
-        
-        # TODO: 3 - Implement full texture path finding.
+
+        # guess the actual steam install path when steam is not installed at the default location and the texture path
+        # is hardcoded for some reasons
+        steamguessedpath = 'steamapps' + os.sep + 'common'
+        importpathsplit = importpath.split(steamguessedpath)
+        sourcesplit = source.split(steamguessedpath)
+
+        if len(importpathsplit) == 2 and len(sourcesplit) == 2:
+            searchPathList.append(os.path.dirname(importpathsplit[0] + steamguessedpath + sourcesplit[1]))
+
         nif_dir = os.path.join(os.getcwd() , 'nif')
         searchPathList.append(nif_dir)
         
@@ -190,11 +198,11 @@ class TextureLoader():
             # go through all possible file names, try alternate extensions
             # too; for linux, also try lower case versions of filenames
             texfns = reduce(operator.add,
-                            [ [ fn[:-4]+ext, fn[:-4].lower()+ext ]
+                            [ [ os.path.basename(fn)[:-4]+ext, os.path.basename(fn)[:-4].lower()+ext ]
                               for ext in ('.DDS','.dds','.PNG','.png',
                                          '.TGA','.tga','.BMP','.bmp',
                                          '.JPG','.jpg') ] )
-            texfns = [fn, fn.lower()] + list(set(texfns))
+            texfns = [os.path.basename(fn), os.path.basename(fn.lower())] + list(set(texfns))
             for texfn in texfns:
                 # now a little trick, to satisfy many Morrowind mods
                 if (texfn[:9].lower() == 'textures' + os.sep) \

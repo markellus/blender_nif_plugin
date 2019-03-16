@@ -186,6 +186,8 @@ class TextureLoader():
         meshes_index = importpath.lower().find("meshes")
         if meshes_index != -1:
             searchPathList.append(importpath[:meshes_index] + 'textures')
+        # also assume that it could be a relative Skyrim style path
+            searchPathList.append(os.path.dirname(importpath[:meshes_index] + source))
         # if it looks like a Civilization IV style path, use common sense
         # to guess texture path
         art_index = importpath.lower().find("art")
